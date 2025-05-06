@@ -1,10 +1,13 @@
 package cpe112.finalproject.Logic;
 
+import cpe112.finalproject.Constants.Path;
 import cpe112.finalproject.Layout.GameUI;
 import cpe112.finalproject.Managers.EnemyManager;
+import cpe112.finalproject.Managers.ImageManager;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
@@ -49,12 +52,14 @@ public class HealthControllerLogic {
         if (enemyHealthController != null) {
             // ลด HP ของศัตรู
             enemyHealthController.takeDamage(damage);
+            ImageManager.getPlayerImageManager().changeImage(Path.PLAYER_ATTACK_IMAGE);
 
-            // ถ้า HP ของศัตรู <= 0 ให้แสดงข้อความ "Enemy defeated!"
-            if (enemyHealthController.isDead()) {
-                System.out.println("Enemy defeated!");
-            }
         }
+        PauseTransition pause = new PauseTransition(Duration.seconds(0.3));
+        pause.setOnFinished(e -> {
+            ImageManager.getPlayerImageManager().changeImage(Path.PLAYER_IDLE_IMAGE);
+        });
+        pause.play();
     }
 
     // Method สำหรับลด HP ของผู้เล่น
@@ -67,7 +72,6 @@ public class HealthControllerLogic {
             // ถ้า HP ของผู้เล่น <= 0 ให้แสดงข้อความ "Player defeated!"
             if (playerHealthController.isDead()) {
                 EnemyManager.getInstance().stopEnemyAttackLoop(); // หยุดการโจมตีของศัตรู
-                System.out.println("Player defeated!");
 
                 // Playform.runLater ใช้สำหรับรันหลังจากสร้าง UI เสร็จ
                 Platform.runLater(() -> {
@@ -115,11 +119,18 @@ public class HealthControllerLogic {
         // ถ้า HP <= 0 ให้เล่น animation ตาย
         if (isDead()) {
             playDeathAnimation(() -> {
-                System.out.println("Enemy defeated!");
                 if (onDeathCallback != null) {
                     onDeathCallback.run();
                 }
             });
+        }
+    }
+
+    public static void healPlayer(double amount) {
+        // ตรวจสอบว่ามี playerHealthController
+        if (playerHealthController != null) {
+            // เพิ่ม HP ของผู้เล่น
+            playerHealthController.heal(amount);
         }
     }
 

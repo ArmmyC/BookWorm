@@ -88,6 +88,9 @@ public class SoundManager {
     // เสียงเมื่อโจมตี
     private static final SoundEffect hitSound = new SoundEffect(Path.HIT_SOUND, 0.5);
 
+    // เสียงบล็อค
+    private static final SoundEffect defendSound = new SoundEffect(Path.DEFEND_SOUND, 0.2);
+
     // ============================================================
     // ------------------- Method สำหรับเล่นเสียงต่างๆ -----------------
     // ============================================================
@@ -109,6 +112,10 @@ public class SoundManager {
 
     public static void playHitSound() {
         hitSound.play();
+    }
+
+    public static void playDefendSound() {
+        defendSound.play();
     }
     // ============================================================
 }

@@ -73,7 +73,8 @@ public class ClassSelectorLogic {
         ui.getClassSelectorPane().getChildren().addAll(
                 createClassButton("Warrior", "A strong and brave fighter.", 150, 5, 10),
                 createClassButton("Mage", "A master of the arcane arts.", 80, 20, 15),
-                createClassButton("Rogue", "A stealthy and agile assassin.", 100, 25, 0));
+                createClassButton("Rogue", "A stealthy and agile assassin.", 100, 25, 0),
+                createClassButton("ENGLISH TEACHER", "A master of the English language.", 999, 999, 0));
     }
 
     // Method สำหรับการสร้างปุ่ม Class Selector
@@ -174,7 +175,6 @@ public class ClassSelectorLogic {
 
     // Method สำหรับการตั้งค่าการทำงานของปุ่ม Confirm
     private void confirmAction() {
-        SoundManager.playClickSound();
         playerName = ui.getNameInput().getText();
         // ถ้าไม่มีการกรอกชื่อผู้เล่น หรือยังไม่ได้เลือกคลาส
         // ให้แสดงข้อความเตือนและเปลี่ยนสีของกรอบข้อความ
@@ -189,6 +189,7 @@ public class ClassSelectorLogic {
         } else {
             // ถ้าทั้งชื่อผู้เล่นและคลาสถูกกรอกครบถ้วน
             // ให้เก็บข้อมูลของผู้เล่นและเปลี่ยนไปยังหน้า GameScene
+            SoundManager.playClickSound();
             PlayerClassStats stats = (PlayerClassStats) selectedButton.getUserData();
             PlayerManager.getInstance().setPlayerData(playerName, stats.className, stats.health, stats.attack,
                     stats.defense);

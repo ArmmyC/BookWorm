@@ -11,13 +11,15 @@ public class Path {
     // ============================================================
     // ------------------------- SOUNDS ---------------------------
     // ============================================================
-    public static final String CLASS_SELECT_SOUND = "/cpe112/finalproject/sounds/classclick.mp3";
-    public static final String CLICK_SOUND = "/cpe112/finalproject/sounds/click.mp3";
-    public static final String HOVER_SOUND = "/cpe112/finalproject/sounds/hover.mp3";
-    public static final String ERROR_SOUND = "/cpe112/finalproject/sounds/error.mp3";
-    public static final String HIT_SOUND = "/cpe112/finalproject/sounds/hit.mp3";
-    public static final String BACKGROUND_MUSIC = "/cpe112/finalproject/sounds/MainMenuTheme.mp3";
-    public static final String BATTLE_MUSIC = "/cpe112/finalproject/sounds/BattleTheme.mp3";
+    public static final String SOUND_PATH = "/cpe112/finalproject/sounds/";
+    public static final String CLASS_SELECT_SOUND = SOUND_PATH + "classclick.mp3";
+    public static final String CLICK_SOUND = SOUND_PATH + "click.mp3";
+    public static final String HOVER_SOUND = SOUND_PATH + "hover.mp3";
+    public static final String ERROR_SOUND = SOUND_PATH + "error.mp3";
+    public static final String HIT_SOUND = SOUND_PATH + "hit.mp3";
+    public static final String DEFEND_SOUND = SOUND_PATH + "defend.mp3";
+    public static final String BACKGROUND_MUSIC = SOUND_PATH + "MainMenuTheme.mp3";
+    public static final String BATTLE_MUSIC = SOUND_PATH + "BattleTheme.mp3";
     // ============================================================
 
     //
@@ -44,7 +46,12 @@ public class Path {
     // ============================================================
     // ---------------------- PLAYER IMAGE ------------------------
     // ============================================================
-    public static final String PLAYER_IMAGE = "/cpe112/finalproject/Images/player.png";
+    public static final String PLAYER_IMAGE_PATH = "/cpe112/finalproject/images/player/";
+    public static final String PLAYER_IDLE_IMAGE = PLAYER_IMAGE_PATH + "player_idle.png";
+    public static final String PLAYER_ATTACK_IMAGE = PLAYER_IMAGE_PATH + "player_attack.png";
+    public static final String PLAYER_DEFEND_IMAGE = PLAYER_IMAGE_PATH + "player_defend.png";
+    public static final String PLAYER_HEAL_IMAGE = PLAYER_IMAGE_PATH + "player_heal.png";
+
     // ============================================================
 
     //

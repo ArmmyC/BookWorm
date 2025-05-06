@@ -139,7 +139,6 @@ public class CreateEnemy {
                         AvatarIMG.fitHeightProperty().bind(combatUI.getEnemyAvatar().heightProperty().multiply(0.8));
                         combatUI.getEnemyAvatar().getChildren().add(AvatarIMG);
                 } catch (Exception e) {
-                        System.err.println("Error loading enemy sprite: " + imagePath);
                         e.printStackTrace();
                 }
         }

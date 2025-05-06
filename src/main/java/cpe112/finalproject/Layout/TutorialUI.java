@@ -81,6 +81,7 @@ public class TutorialUI {
         SoundManager.playClickSound();
     }
 
+    // Getter สำหรับเข้าถึง rootPane ของ TutorialUI
     public StackPane getRootPane() {
         return rootPane;
     }

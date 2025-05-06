@@ -5,6 +5,7 @@ import cpe112.finalproject.Constants.Style;
 import cpe112.finalproject.Layout.CombatUI;
 import cpe112.finalproject.Layout.GameUI;
 import cpe112.finalproject.Logic.HealthControllerLogic;
+import cpe112.finalproject.Managers.ImageManager;
 import cpe112.finalproject.Managers.PlayerManager;
 import cpe112.finalproject.Responsives.ResponsiveLabel;
 import javafx.geometry.Pos;
@@ -125,10 +126,12 @@ public class CreatePlayer {
 
         // Method สำหรับตั้งค่า Player Avatar (ภาพของ Player)
         private void setupPlayerAvatar() {
-                ImageView AvatarIMG = new ImageView(getClass().getResource(Path.PLAYER_IMAGE).toExternalForm());
+                ImageView AvatarIMG = new ImageView(getClass().getResource(Path.PLAYER_IDLE_IMAGE).toExternalForm());
                 AvatarIMG.fitWidthProperty().bind(combatUI.getPlayerAvatar().widthProperty().multiply(0.6));
                 AvatarIMG.fitHeightProperty().bind(combatUI.getPlayerAvatar().heightProperty().multiply(0.8));
                 combatUI.getPlayerAvatar().getChildren().add(AvatarIMG);
+                ImageManager playerImageManager = new ImageManager(AvatarIMG);
+                ImageManager.setPlayerImageManager(playerImageManager);
         }
 
         // Method สำหรับตั้งค่า Responsive Label

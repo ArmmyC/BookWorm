@@ -209,6 +209,7 @@ public class SideMenuUI {
         // ตั้งค่าให้ปุ่ม ScreenButton ปรับหน้าจอเป็น Fullscreen หรือ Windowed เมื่อกด
         fullscreenButton.setOnAction(e -> {
             stage.setFullScreen(!stage.isFullScreen());
+            SoundManager.playClickSound();
         });
 
         // ตั้งค่าให้ปุ่ม ScreenButton แสดงข้อความ "Fullscreen" หรือ "Windowed"
@@ -221,7 +222,6 @@ public class SideMenuUI {
             } else {
                 fullscreenButton.setText("Fullscreen");
             }
-            SoundManager.playClickSound();
         });
     }
 
@@ -244,8 +244,10 @@ public class SideMenuUI {
 
     // Method สำหรับตั้งค่า Developer Button
     private void setupDeveloperButton() {
-        SoundManager.playClickSound();
-        DeveloperButton.setOnAction(e -> devUI.showDevWindow());
+        DeveloperButton.setOnAction(e -> {
+            SoundManager.playClickSound();
+            devUI.showDevWindow();
+        });
     }
 
     // ============================================================

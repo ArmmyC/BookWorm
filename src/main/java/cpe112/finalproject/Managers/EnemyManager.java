@@ -1,7 +1,9 @@
 package cpe112.finalproject.Managers;
 
+import cpe112.finalproject.Constants.Path;
 import cpe112.finalproject.Logic.HealthControllerLogic;
 import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -65,6 +67,7 @@ public final class EnemyManager {
             currentEnemy = generateEnemy(count);
         }
 
+        HealthControllerLogic.healPlayer(5 * count); // เพิ่ม HP ของผู้เล่น 5 * จำนวนศัตรูที่ถูกสร้างขึ้น
         return currentEnemy;
     }
 
@@ -74,10 +77,10 @@ public final class EnemyManager {
         double attack = 10 + number * 2.5;
         double defense = 5 + number * 1.5;
 
-        String[] names = { "Goblin", "Orc", "Imp", "Bandit", "Thief", "Skeleton", "Zombie" };
+        String[] names = { "Goblin", "Orc", "Thief", "Skeleton", "Zombie" };
         String name = names[number % names.length];
         String className = "Minion";
-        String imagePath = "/images/" + name.toLowerCase() + ".png";
+        String imagePath = "/cpe112/finalproject/images/enemy/" + name.toLowerCase() + ".png";
 
         return new EnemyData(name, className, health, attack, defense, imagePath);
     }
@@ -88,11 +91,11 @@ public final class EnemyManager {
         double attack = 30 + level * 15;
         double defense = 20 + level * 10;
 
-        String[] bossNames = { "Dreadlord", "Hellknight", "Warlord", "Behemoth" };
+        String[] bossNames = { "Sans", "Devil", "Bowser", "Moonlord", "Wither" };
         String baseName = bossNames[level % bossNames.length];
         String name = baseName + " [Boss Lv." + level + "]";
         String className = "Boss";
-        String imagePath = "/images/boss_" + baseName.toLowerCase() + ".png";
+        String imagePath = "/cpe112/finalproject/images/boss/" + baseName.toLowerCase() + ".png";
 
         return new EnemyData(name, className, health, attack, defense, imagePath);
     }
@@ -143,8 +146,14 @@ public final class EnemyManager {
         // ถ้ามีศัตรูอยู่ให้ทำการโจมตี
         if (enemy != null) {
             double damage = enemy.attack; // ค่าพลังโจมตีของศัตรู
+            ImageManager.getPlayerImageManager().changeImage(Path.PLAYER_DEFEND_IMAGE); // เปลี่ยนภาพของศัตรู
             HealthControllerLogic.damagePlayer(damage); // เรียกใช้ method สำหรับลด HP ของผู้เล่น
-            SoundManager.playHitSound(); // เล่นเสียงโจมตี
+            SoundManager.playDefendSound(); // เล่น player โดนโจมตี
+            PauseTransition pause = new PauseTransition(Duration.seconds(0.3));
+            pause.setOnFinished(e -> {
+                ImageManager.getPlayerImageManager().changeImage(Path.PLAYER_IDLE_IMAGE);
+            });
+            pause.play();
         }
     }
 

@@ -99,7 +99,6 @@ public class MouseEventHandler {
                 for (char c : word.toCharArray()) {
                     totalDamage += puzzleLogic.getLetterDamage(String.valueOf(c)) * playerManager.getAttack();
                 }
-                System.out.println("Word: " + word + " Damage: " + totalDamage);
 
                 // ทำการเล่นเสียงโจมตี
                 SoundManager.playHitSound();

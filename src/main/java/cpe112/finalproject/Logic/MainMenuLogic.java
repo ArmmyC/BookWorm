@@ -175,7 +175,6 @@ public class MainMenuLogic {
     // Method สำหรับการตั้งค่าการทำงานของปุ่ม PLAY
     // โดยเมื่อกดปุ่ม PLAY จะทำการเรียกย้ายไปยังหน้าเลือกตัวละคร (ClassSelector)
     private void playButtonAction() {
-        System.out.println("Play button clicked!");
         SoundManager.playClickSound();
         ClassSelectorScene classSelectorScene = new ClassSelectorScene();
         SceneManager.getInstance().switchRoot(classSelectorScene.getRootPane());
@@ -184,14 +183,12 @@ public class MainMenuLogic {
     // Method สำหรับการตั้งค่าการทำงานของปุ่ม EXIT
     // โดยเมื่อกดปุ่ม EXIT จะทำการปิดโปรแกรม
     private void exitButtonAction() {
-        System.out.println("Exit button clicked!");
         SoundManager.playClickSound();
         Platform.exit();
     }
 
     // Method สำหรับการตั้งค่าการทำงานของปุ่ม Tutorial
     private void tutorialButtonAction() {
-        System.out.println("Tutorial button clicked!");
         ui.getTutorialUI().getRootPane().setVisible(true);
         ui.getTutorialUI().getRootPane().setMouseTransparent(false);
         SoundManager.playClickSound();
