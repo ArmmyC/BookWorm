@@ -2,7 +2,7 @@ package cpe112.finalproject.Scenes;
 
 import cpe112.finalproject.Layout.MainMenuUI;
 import cpe112.finalproject.Logic.MainMenuLogic;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 
 /*
  * MainMenuScene.java
@@ -27,7 +27,7 @@ public class MainMenuScene {
 
     // Method สำหรับเรียก RootPane ของหน้าเมนูหลัก
     // เพื่อใช้ในการแสดงผลใน Scene
-    public BorderPane getRootPane() {
+    public StackPane getRootPane() {
         return ui.getRootPane();
     }
 }

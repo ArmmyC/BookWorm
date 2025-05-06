@@ -38,19 +38,14 @@ public class Name {
     //
 
     // ============================================================
-    // -------------------------- CREDITS -------------------------
+    // ---------------------- TutorialUI.java ---------------------
     // ============================================================
-    public static final String CREDIT_LABEL = "CREDITS";
-    public static final String CREDIT_BACK_BUTTON = "Back to Main Menu";
-    // ============================================================
-
-    //
-    //
-    //
-
-    // ============================================================
-    // ---------------------- SideMenuUI.java ---------------------
-    // ============================================================
-
+    public static final String TUTORIAL_DESCRIPTION = "1. Select a class\n"
+            + "2. Enter your name\n"
+            + "3. Click \"confirm\" button to start the game\n"
+            + "4. Use mouse to drag click along the letter to form a word\n"
+            + "5. Release mouse to attack\n"
+            + "6. Defeat enemy as much as you can\n"
+            + "7. Have fun!";
     // ============================================================
 }

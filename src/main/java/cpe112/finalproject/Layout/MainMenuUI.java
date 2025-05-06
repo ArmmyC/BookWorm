@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 /*
@@ -17,8 +18,11 @@ import javafx.scene.layout.VBox;
 
 public class MainMenuUI {
 
+    private final TutorialUI tutorialUI = new TutorialUI(); // สร้าง TutorialUI
+
     // JavaFX Components ของ MainMenuUI
-    private final BorderPane rootPane = new BorderPane();
+    private final StackPane rootPane = new StackPane();
+    private final BorderPane borderPane = new BorderPane();
     private final VBox centerPane = new VBox();
     private final VBox titlePane = new VBox();
     private final VBox mainMenuPane = new VBox();
@@ -30,6 +34,7 @@ public class MainMenuUI {
 
     // ปุ่มต่างๆบนหน้า Main Menu
     private final Button playButton = new Button(Name.PLAY_BUTTON);
+    private final Button TutorialButton = new Button("How to Play");
     private final Button exitButton = new Button(Name.QUIT_BUTTON);
 
     // ปุ่มและ Slider สำหรับการตั้งค่าเสียงและโหมดเต็มหน้าจอ
@@ -46,20 +51,24 @@ public class MainMenuUI {
     private void setupLayout() {
 
         // ตั้งค่า Layout ของ UI
-        rootPane.setCenter(centerPane);
-        rootPane.setTop(settingsPane);
+        rootPane.getChildren().addAll(borderPane, tutorialUI.getRootPane());
+        borderPane.setCenter(centerPane);
+        borderPane.setTop(settingsPane);
         centerPane.getChildren().addAll(titlePane, mainMenuPane);
         titlePane.getChildren().add(titleLabel);
-        mainMenuPane.getChildren().addAll(playButton, exitButton);
+        mainMenuPane.getChildren().addAll(playButton, TutorialButton, exitButton);
         settingsPane.getChildren().addAll(musicControl, fullscreenButton);
         musicControl.getChildren().addAll(sliderLabel, volumeSlider);
 
         // ตั้งค่าขนาดของ UI
-        titlePane.prefHeightProperty().bind(rootPane.heightProperty().multiply(0.3)); // 30%
-        mainMenuPane.prefHeightProperty().bind(rootPane.heightProperty().multiply(0.6)); // 60%
-        settingsPane.prefHeightProperty().bind(rootPane.heightProperty().multiply(0.08)); // 8%
+        titlePane.prefHeightProperty().bind(borderPane.heightProperty().multiply(0.3)); // 30%
+        mainMenuPane.prefHeightProperty().bind(borderPane.heightProperty().multiply(0.6)); // 60%
+        settingsPane.prefHeightProperty().bind(borderPane.heightProperty().multiply(0.08)); // 8%
         playButton.prefWidthProperty().bind(mainMenuPane.widthProperty().multiply(0.3)); // 30%
+        TutorialButton.prefWidthProperty().bind(mainMenuPane.widthProperty().multiply(0.3));
         exitButton.prefWidthProperty().bind(mainMenuPane.widthProperty().multiply(0.3)); // 30%
+        tutorialUI.getRootPane().maxWidthProperty().bind(rootPane.widthProperty().multiply(0.7)); // 70%
+        tutorialUI.getRootPane().maxHeightProperty().bind(rootPane.heightProperty().multiply(0.7)); // 70%
 
         // ตั้งค่าการจัดตำแหน่งของ UI
         titlePane.setAlignment(Pos.CENTER);
@@ -68,7 +77,7 @@ public class MainMenuUI {
         musicControl.setAlignment(Pos.CENTER);
 
         // ตั้งค่า Style เบื้องต้นให้กับ UI
-        rootPane.setStyle(Style.MAINMENU_BACKGROUND_COLOR);
+        borderPane.setStyle(Style.MAINMENU_BACKGROUND_COLOR);
         mainMenuPane.setStyle(Style.MAINMENU_SPACING);
         settingsPane.setStyle(Style.SETTINGS_SPACING);
     }
@@ -76,8 +85,13 @@ public class MainMenuUI {
     // ============================================================
     // -------------- Getter สำหรับการเข้าถึง Object ต่างๆ -------------
     // ============================================================
-    public BorderPane getRootPane() {
+
+    public StackPane getRootPane() {
         return rootPane;
+    }
+
+    public BorderPane getBorderPane() {
+        return borderPane;
     }
 
     public VBox getCenterPane() {
@@ -116,12 +130,20 @@ public class MainMenuUI {
         return fullscreenButton;
     }
 
+    public Button getTutorialButton() {
+        return TutorialButton;
+    }
+
     public Label getSliderLabel() {
         return sliderLabel;
     }
 
     public Slider getVolumeSlider() {
         return volumeSlider;
+    }
+
+    public TutorialUI getTutorialUI() {
+        return tutorialUI;
     }
     // ============================================================
 }

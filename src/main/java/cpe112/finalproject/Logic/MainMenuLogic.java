@@ -129,9 +129,11 @@ public class MainMenuLogic {
         // ตั้งค่าการทำงานของปุ่ม Menu ต่างๆ เมื่อถูกคลิก
         ui.getPlayButton().setOnAction(e -> playButtonAction());
         ui.getExitButton().setOnAction(e -> exitButtonAction());
+        ui.getTutorialButton().setOnAction(e -> tutorialButtonAction());
         // ตั้งค่า Hover Effect และ Responsive ของปุ่ม Menu ต่างๆ
         setupHoverAndResponsive(ui.getPlayButton());
         setupHoverAndResponsive(ui.getExitButton());
+        setupHoverAndResponsive(ui.getTutorialButton());
     }
 
     // Method สำหรับการตั้งค่า Hover และ Responsive ของปุ่ม Menu
@@ -185,5 +187,13 @@ public class MainMenuLogic {
         System.out.println("Exit button clicked!");
         SoundManager.playClickSound();
         Platform.exit();
+    }
+
+    // Method สำหรับการตั้งค่าการทำงานของปุ่ม Tutorial
+    private void tutorialButtonAction() {
+        System.out.println("Tutorial button clicked!");
+        ui.getTutorialUI().getRootPane().setVisible(true);
+        ui.getTutorialUI().getRootPane().setMouseTransparent(false);
+        SoundManager.playClickSound();
     }
 }

@@ -6,6 +6,7 @@ import cpe112.finalproject.Constants.Style;
 import cpe112.finalproject.Handlers.KeyEventHandler;
 import cpe112.finalproject.Managers.EnemyManager;
 import cpe112.finalproject.Managers.SceneManager;
+import cpe112.finalproject.Managers.SoundManager;
 import cpe112.finalproject.Responsives.ResponsiveButton;
 import cpe112.finalproject.Scenes.MainMenuScene;
 import javafx.animation.FadeTransition;
@@ -220,12 +221,14 @@ public class SideMenuUI {
             } else {
                 fullscreenButton.setText("Fullscreen");
             }
+            SoundManager.playClickSound();
         });
     }
 
     // Method สำหรับตั้งค่า Exit Button
     private void setupExitButton() {
         exitButton.setOnAction(e -> {
+            SoundManager.playClickSound();
             SceneManager.getInstance().getStage().close();
         });
     }
@@ -233,6 +236,7 @@ public class SideMenuUI {
     // Method สำหรับตั้งค่า Back Button
     private void setupBackButton() {
         backButton.setOnAction(e -> {
+            SoundManager.playClickSound();
             MainMenuScene mainMenuScene = new MainMenuScene();
             SceneManager.getInstance().switchRoot(mainMenuScene.getRootPane());
         });
@@ -240,6 +244,7 @@ public class SideMenuUI {
 
     // Method สำหรับตั้งค่า Developer Button
     private void setupDeveloperButton() {
+        SoundManager.playClickSound();
         DeveloperButton.setOnAction(e -> devUI.showDevWindow());
     }
 
