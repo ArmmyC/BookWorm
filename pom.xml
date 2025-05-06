@@ -10,6 +10,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>11</maven.compiler.release>
         <javafx.version>13</javafx.version>
+        <javafx.sdk>C:/javafx-sdk-21.0.7</javafx.sdk> <!-- change this to your actual path -->
     </properties>
 
     <dependencies>
@@ -32,15 +33,44 @@
 
     <build>
         <plugins>
+
+            <!-- Compile Java -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <release>11</release>
                 </configuration>
             </plugin>
 
+            <!-- Create fat JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>cpe112.finalproject.App</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Optional: Run JavaFX project from Maven -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -49,11 +79,49 @@
                     <mainClass>cpe112.finalproject.App</mainClass>
                     <options>
                         <option>--module-path</option>
-                        <option>C:\javafx-sdk-21.0.7\lib</option> <!-- CHANGE THIS TO YOUR REAL PATH -->
+                        <option>${javafx.sdk}/lib</option>
                         <option>--add-modules</option>
                         <option>javafx.controls,javafx.fxml,javafx.media</option>
                     </options>
                 </configuration>
+            </plugin>
+
+            <!-- Package with jpackage using exec-maven-plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>jpackage</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>jpackage</executable>
+                            <arguments>
+                                <argument>--input</argument>
+                                <argument>${project.build.directory}</argument>
+                                <argument>--dest</argument>
+                                <argument>${project.build.directory}/installer</argument>
+                                <argument>--name</argument>
+                                <argument>MyJavaFXApp</argument>
+                                <argument>--main-jar</argument>
+                                <argument>cpe112finalproject-1.0-SNAPSHOT-jar-with-dependencies.jar</argument>
+                                <argument>--main-class</argument>
+                                <argument>cpe112.finalproject.App</argument>
+                                <argument>--type</argument>
+                                <argument>exe</argument>
+                                <argument>--icon</argument>
+                                <argument>src/main/resources/icon.ico</argument>
+                                <argument>--module-path</argument>
+                                <argument>${javafx.sdk}/lib</argument>
+                                <argument>--add-modules=javafx.controls,javafx.fxml,javafx.media</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
