@@ -29,7 +29,7 @@ public class GameUI {
     private final GameOverUI gameOverUI = new GameOverUI();
     private final CombatLogic combatLogic = new CombatLogic(combatUI);
     private final PuzzleLogic puzzleLogic = new PuzzleLogic();
-    private MouseEventHandler mouseEventHandler = new MouseEventHandler(puzzleLogic, combatLogic);
+    private final MouseEventHandler mouseEventHandler = new MouseEventHandler(puzzleLogic, combatLogic);
     private final PuzzleUI puzzleUI = new PuzzleUI(puzzleLogic, mouseEventHandler);
 
     // สร้างตัวแปรสำหรับกำหนดอัตราส่วนของพื้นที่ด้านบนและด้านล่าง
@@ -44,7 +44,7 @@ public class GameUI {
 
     // Method สำหรับสร้าง Player
     public void createPlayer() {
-        new CreatePlayer(this);
+        CreatePlayer player = new CreatePlayer(this);
     }
 
     // Method สำหรับสร้าง Layout ของ UI

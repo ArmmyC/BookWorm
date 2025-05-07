@@ -1,1 +1,1 @@
-USE App.java to run. inside cpe112finalproject\src\main\java\cpe112\finalproject
+Run CPE112Final-1.0.msi in folder output to install and play the game!
