@@ -11,7 +11,7 @@ public class Name {
     // ============================================================
     // ------------------------ MAIN MENU -------------------------
     // ============================================================
-    public static final String TITLE_NAME = "BOOKWORMS";
+    public static final String TITLE_NAME = "WORMBOOKS";
     public static final String PLAY_BUTTON = "Play";
     public static final String QUIT_BUTTON = "Quit bozo";
     public static final String FULLSCREEN_BUTTON = "Fullscreen";

@@ -67,6 +67,7 @@ public class GameUI {
         gameOverUI.getRootPane().maxHeightProperty().bind(rootPane.heightProperty());
         gameOverUI.getRootPane().maxWidthProperty().bind(rootPane.widthProperty());
 
+        rootPane.setStyle("-fx-background-color: rgb(25, 25, 25);"); // ตั้งค่าพื้นหลังของ UI
     }
 
     // ============================================================

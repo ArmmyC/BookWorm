@@ -80,6 +80,7 @@ public class MainMenuUI {
         borderPane.setStyle(Style.MAINMENU_BACKGROUND_COLOR);
         mainMenuPane.setStyle(Style.MAINMENU_SPACING);
         settingsPane.setStyle(Style.SETTINGS_SPACING);
+
     }
 
     // ============================================================
