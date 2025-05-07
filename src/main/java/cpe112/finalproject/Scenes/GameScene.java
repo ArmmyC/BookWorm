@@ -35,7 +35,8 @@ public class GameScene {
     private void spawnFirstEnemy() {
         EnemyManager manager = EnemyManager.getInstance();
         EnemyManager.EnemyData data = manager.generateEnemy(0);
-        new CreateEnemy(ui, data.name, data.className, data.health, data.attack, data.defense, data.imagePath);
+        CreateEnemy enemy = new CreateEnemy(ui, data.name, data.className, data.health, data.attack, data.defense,
+                data.imagePath);
     }
 
     // Getter สำหรับเข้าถึง UI ของเกม

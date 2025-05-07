@@ -103,7 +103,8 @@ public class CreateEnemy {
                 // ตั้งค่าให้เมื่อ Enemy ตาย จะทำการสร้าง Enemy ใหม่
                 logic.setOnDeath(() -> {
                         EnemyManager.EnemyData next = EnemyManager.getInstance().nextEnemy();
-                        new CreateEnemy(gameUI, next.name, next.className, next.health, next.attack, next.defense,
+                        CreateEnemy enemy = new CreateEnemy(gameUI, next.name, next.className, next.health, next.attack,
+                                        next.defense,
                                         next.imagePath);
                 });
 
